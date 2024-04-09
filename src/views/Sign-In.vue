@@ -9,8 +9,8 @@
         :xl="{ span: 6, offset: 2 }"
         class="col-form"
       >
-        <h1 class="mb-15">Sign In</h1>
-        <h5 class="font-regular text-muted">Enter your email and password to sign in</h5>
+        <h1 class="mb-15">Đăng nhập</h1>
+        <h5 class="font-regular text-muted">Nhập email và mật khẩu để đăng nhập</h5>
         <!-- Sign In From -->
         <a-form
           id="form-login"
@@ -29,7 +29,7 @@
               placeholder="Email"
             />
           </a-form-item>
-          <a-form-item class="mb-5" label="Password" :colon="false">
+          <a-form-item class="mb-5" label="Mật khẩu" :colon="false">
             <a-input
               v-decorator="[
                 'password',
@@ -42,10 +42,13 @@
 
           <a-form-item>
             <a-button type="primary" block html-type="submit" class="login-form-button">
-              SIGN IN
+              ĐĂNG NHẬP
             </a-button>
           </a-form-item></a-form
         >
+      </a-col>
+      <a-col :span="24" :md="12" :lg="12" :xl="12" class="col-img">
+        <img src="../../public/images/book.png" alt="" />
       </a-col>
     </a-row>
   </div>

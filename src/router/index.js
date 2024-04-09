@@ -4,8 +4,13 @@ const router = createRouter({
   history: createWebHistory('/'),
   routes: [
     {
+      path: '/:catchAll(.*)',
+      component: () => import('../views/404.vue')
+    },
+    {
       path: '/',
       name: 'Home',
+      layout: 'dashboard',
       component: () => import('../views/Home.vue')
     },
     {

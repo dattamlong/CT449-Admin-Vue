@@ -1,35 +1,24 @@
-<!-- 
-	This is the default layout, used in sign-in and sign-up pages.
- -->
-
 <template>
   <div>
-    <!-- Default Layout -->
     <a-layout class="layout-default" id="layout-default" :class="[layoutClass]">
-      <!-- Layout Header ( Navbar ) -->
-      <DefaultHeader></DefaultHeader>
-      <!-- / Layout Header ( Navbar ) -->
-
-      <!-- Page Content -->
+      <DefaultHeader />
       <a-layout-content>
+        <Particles />
         <router-view />
       </a-layout-content>
-      <!-- / Page Content -->
-
-      <!-- Layout Footer -->
-      <DefaultFooter></DefaultFooter>
-      <!-- / Layout Footer -->
+      <DefaultFooter />
     </a-layout>
-    <!-- / Default Layout -->
   </div>
 </template>
 
 <script>
 import DefaultHeader from '../components/Headers/DefaultHeader.vue'
 import DefaultFooter from '../components/Footers/DefaultFooter.vue'
+import Particles from '../components/Particles/Particles.vue'
 
 export default {
   components: {
+    Particles,
     DefaultHeader,
     DefaultFooter
   },

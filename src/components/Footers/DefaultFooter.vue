@@ -1,7 +1,13 @@
 <template>
   <a-layout-footer>
+    <a-menu mode="horizontal">
+      <a-menu-item>Company </a-menu-item>
+      <a-menu-item>About Us</a-menu-item>
+      <a-menu-item>Team </a-menu-item>
+      <a-menu-item>Blog</a-menu-item>
+    </a-menu>
+
     <a-menu mode="horizontal" class="menu-nav-social">
-      <!-- insta -->
       <a-menu-item>
         <a href="#">
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -11,7 +17,6 @@
           </svg>
         </a>
       </a-menu-item>
-      <!-- github -->
       <a-menu-item>
         <a href="#">
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -23,10 +28,7 @@
       </a-menu-item>
     </a-menu>
 
-    <p class="copyright">
-      Copyright © 2024 by
-      <a href="https://creative-tim.com">Nguyen Tuan Dat</a>.
-    </p>
+    <p class="copyright">Copyright © 2024 by Nguyễn Tuấn Đạt</p>
   </a-layout-footer>
 </template>
 

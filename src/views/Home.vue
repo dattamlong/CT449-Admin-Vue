@@ -1,3 +1,3 @@
 <template>
-  <div>this is Home page</div>
+  <div>dat dep trai</div>
 </template>
