@@ -9,9 +9,35 @@ const router = createRouter({
     },
     {
       path: '/',
-      name: 'Home',
-      layout: 'dashboard',
+      name: 'Trang chủ',
+      meta: {
+        layout: 'dashboard'
+      },
       component: () => import('../views/Home.vue')
+    },
+    {
+      path: '/users',
+      name: 'Tài khoản',
+      meta: {
+        layout: 'dashboard'
+      },
+      component: () => import('../views/Users.vue')
+    },
+    {
+      path: '/books',
+      name: 'Sách',
+      meta: {
+        layout: 'dashboard'
+      },
+      component: () => import('../views/Books.vue')
+    },
+    {
+      path: '/profile',
+      name: 'Trang cá nhân',
+      meta: {
+        layout: 'dashboard'
+      },
+      component: () => import('../views/Profile.vue')
     },
     {
       path: '/sign-in',

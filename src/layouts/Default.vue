@@ -3,7 +3,6 @@
     <a-layout class="layout-default" id="layout-default" :class="[layoutClass]">
       <DefaultHeader />
       <a-layout-content>
-        <Particles />
         <router-view />
       </a-layout-content>
       <DefaultFooter />
@@ -14,11 +13,9 @@
 <script>
 import DefaultHeader from '../components/Headers/DefaultHeader.vue'
 import DefaultFooter from '../components/Footers/DefaultFooter.vue'
-import Particles from '../components/Particles/Particles.vue'
 
 export default {
   components: {
-    Particles,
     DefaultHeader,
     DefaultFooter
   },

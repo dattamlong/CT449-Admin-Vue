@@ -6,7 +6,7 @@
   </a-layout-header>
 </template>
 
-<script>
+<script>  
 export default {
   data() {
     return {
