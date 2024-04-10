@@ -23,7 +23,7 @@
           :model="formState"
           @submit="handleSubmit"
         >
-          <a-form-item class="mb-10" label="Email" labelAlign="" :colon="false">
+          <a-form-item class="mb-10" label="Email" :colon="false">
             <a-input
               v-model:value="formState.email"
               v-decorator="[

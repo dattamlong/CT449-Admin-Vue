@@ -16,6 +16,7 @@
     "ant-design-vue": "^4.1.2",
     "axios": "^1.6.8",
     "pinia": "^2.1.7",
+    "query-string": "^9.0.0",
     "tsparticles": "^3.3.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

@@ -8,14 +8,18 @@ import { h } from 'vue'
 
 export const useAuthStore = defineStore({
   id: 'auth',
+  state: () => ({
+    user: JSON.parse(localStorage.getItem('user') || null),
+    returnUrl: null
+  }),
   actions: {
     async login(payload) {
       try {
         const { user, token } = await login(payload)
+        this.user = user
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('accessToken', token.accessToken)
         localStorage.setItem('refreshToken', token.refreshToken)
-        console.log(user)
         notification.open({
           message: 'Đăng nhập thành công',
           description: `Xin chào ${user.firstName}, chúc bạn một ngày tốt lành!`,
@@ -29,6 +33,7 @@ export const useAuthStore = defineStore({
       }
     },
     logout() {
+      this.user = null
       localStorage.removeItem('user')
       notification.open({
         message: 'Đăng xuất thành công',
