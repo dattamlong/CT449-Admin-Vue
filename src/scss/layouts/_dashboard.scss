@@ -103,7 +103,6 @@
       border: none;
       .ant-menu-item,
       .ant-menu-submenu {
-        margin: 0;
         overflow: visible;
         &::after {
           display: none;
@@ -115,7 +114,7 @@
     }
     .ant-menu-item,
     .ant-menu-submenu {
-      padding: 0 !important;
+      padding: 10px !important;
       height: auto;
       line-height: normal;
 

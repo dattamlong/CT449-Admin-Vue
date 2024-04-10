@@ -32,7 +32,7 @@ export const useAuthStore = defineStore({
       localStorage.removeItem('user')
       notification.open({
         message: 'Đăng xuất thành công',
-        description: `Tạm biệt ${user.firstName}, chúc bạn vui vẻ!`,
+        description: `Tạm biệt, hãy đăng nhập nếu muốn tiếp tục!`,
         icon: h(SmileOutlined, { style: 'color: #108ee9' }),
         duration: 2
       })

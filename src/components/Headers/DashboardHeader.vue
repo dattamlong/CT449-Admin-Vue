@@ -1,5 +1,5 @@
 <template>
-  <component :is="navbarFixed ? 'a-affix' : 'div'" :offset-top="top">
+  <component :is="navbarFixed ? 'a-affix' : 'div'">
     <a-layout-header>
       <a-row type="flex">
         <a-col :span="24" :md="6">
@@ -17,7 +17,7 @@
           <a-button
             type="link"
             class="sidebar-toggler"
-            @click="$emit('toggleSidebar', !sidebarCollapsed), resizeEventHandler()"
+            @click="$emit('toggleSidebar', !sidebarCollapsed)"
           >
             <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path
@@ -25,7 +25,7 @@
               />
             </svg>
           </a-button>
-          <a-button :onClick="handleLogout" type="">
+          <a-button @click="handleLogout">
             <svg
               width="20"
               height="20"
@@ -50,28 +50,11 @@
 
 <script setup>
 import { useAuthStore } from '@/stores/authStore'
-import { ref, onMounted, onUnmounted } from 'vue'
 
-const navbarFixed = ref(false)
-const sidebarCollapsed = ref(false)
-const top = ref(0)
-const wrapper = ref(document.body)
+const props = defineProps(['navbarFixed', 'sidebarCollapsed'])
 
-const resizeEventHandler = () => {
-  top.value = top.value ? 0 : -0.01
-}
-
-const handleLogout = async () => {
+const handleLogout = () => {
   const authStore = useAuthStore()
-  await authStore.logout()
+  authStore.logout()
 }
-
-onMounted(() => {
-  wrapper.value = document.getElementById('layout-dashboard')
-  window.addEventListener('resize', resizeEventHandler)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', resizeEventHandler)
-})
 </script>

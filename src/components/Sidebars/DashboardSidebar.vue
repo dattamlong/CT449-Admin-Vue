@@ -120,31 +120,6 @@
   </a-layout-sider>
 </template>
 
-<script>
-export default {
-  props: {
-    // Sidebar collapsed status.
-    sidebarCollapsed: {
-      type: Boolean,
-      default: false
-    },
-
-    // Main sidebar color.
-    sidebarColor: {
-      type: String,
-      default: 'primary'
-    },
-
-    // Main sidebar theme : light, white, dark.
-    sidebarTheme: {
-      type: String,
-      default: 'light'
-    }
-  },
-  data() {
-    return {
-      // sidebarCollapsedModel: this.sidebarCollapsed,
-    }
-  }
-}
+<script setup>
+const props = defineProps(['sidebarCollapsed', 'sidebarColor', 'sidebarTheme'])
 </script>
