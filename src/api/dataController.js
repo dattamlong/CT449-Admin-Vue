@@ -32,3 +32,16 @@ export const create = async (resource, newData) => {
 
   return data
 }
+
+export const uploadImage = (source, file) => {
+  const formData = new FormData()
+
+  formData.append('file', file)
+  console.log(source)
+
+  return api.post(`api/photos/${source}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
