@@ -4,6 +4,14 @@
       <template #title>
         <h5 class="font-semibold m-0">Danh sách tài khoản</h5>
       </template>
+      <a-button
+        @click="() => router.push('/users/create')"
+        class="fab"
+        :style="{ fontSize: '16px', zIndex: 100 }"
+        shape="circle"
+      >
+        <UserAddOutlined />
+      </a-button>
       <a-table
         :customRow="customRow"
         :loading="loading"
@@ -20,6 +28,8 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { getList } from '@/api/dataController'
+import { UserAddOutlined } from '@ant-design/icons-vue'
+
 import router from '@/router'
 
 const loading = ref(false)

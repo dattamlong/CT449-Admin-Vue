@@ -4,6 +4,7 @@ import Dashboard from '@/views/Dashboard.vue'
 import Home from '@/views/Home.vue'
 import Profile from '@/views/Profile.vue'
 import SignIn from '@/views/Sign-In.vue'
+import UserCreate from '@/views/UserCreate.vue'
 import UserEdit from '@/views/UserEdit.vue'
 import Users from '@/views/Users.vue'
 import { notification } from 'ant-design-vue'
@@ -38,12 +39,18 @@ const router = createRouter({
         {
           path: 'users',
           name: 'Tài khoản',
-          component: Users
+          component: Users,
+          children: []
         },
         {
           path: 'users/:id',
           name: 'Chỉnh sửa tài khoản',
           component: UserEdit
+        },
+        {
+          path: 'users/create',
+          name: 'Thêm tài khoản',
+          component: UserCreate
         },
         {
           path: 'books',

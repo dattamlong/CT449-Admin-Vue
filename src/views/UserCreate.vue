@@ -1,8 +1,9 @@
-<template>
+<!-- <template>
   <a-card>
     <template #title>
       <h5 class="font-semibold m-0">Chỉnh sửa tài khoản</h5>
     </template>
+
     <d-form
       @handleSubmit="handleSubmit"
       :fields="fields"
@@ -16,10 +17,9 @@
 </template>
 
 <script setup>
-import { getOne, updateOne } from '@/api/dataController'
+import { create } from '@/api/dataController'
 import router from '@/router'
-import { onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, watch } from 'vue'
 import DForm from '@/components/Form/ DForm.vue'
 
 //Colums
@@ -63,33 +63,36 @@ const fields = [
   {
     title: 'Số điện thoại',
     dataIndex: 'phoneNumber'
+  },
+  {
+    title: 'Mật khẩu',
+    dataIndex: 'password',
+    typeData: 'password'
   }
 ]
 const labelCol = { span: 4 }
 const wrapperCol = { span: 14 }
-const route = useRoute()
 const loading = ref(false)
 const formState = ref({})
 const message = ref({})
-const id = route.params.id
 const isFormChanged = ref(false)
-let user = null
 
 watch(
   () => JSON.stringify(formState.value),
   (value) => {
-    isFormChanged.value = value !== JSON.stringify(user)
+    isFormChanged.value = value !== ''
   }
 )
 
 const handleSubmit = async () => {
   loading.value = true
   try {
-    const { firstName, lastName, email, phoneNumber, gender, birthday } = formState.value
-    await updateOne('users', id, {
+    const { firstName, lastName, email, phoneNumber, gender, birthday, password } = formState.value
+    await create('users', {
       firstName,
       lastName,
       email,
+      password,
       phoneNumber,
       gender,
       birthday
@@ -98,20 +101,9 @@ const handleSubmit = async () => {
   } catch (error) {
     message.value = error.response.data
   }
+
   loading.value = false
 }
-
-onMounted(async () => {
-  loading.value = true
-  try {
-    user = await getOne('users', id)
-    formState.value = JSON.parse(JSON.stringify(user))
-  } catch (error) {
-    console.log(error)
-  }
-
-  loading.value = false
-})
 </script>
 
-<style lang="scss"></style>
+<style lang="scss"></style> -->
