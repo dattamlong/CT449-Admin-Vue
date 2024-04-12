@@ -1,52 +1,51 @@
 <template>
-  <a-form
-    id="form-update"
-    layout="vertical"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-    :hideRequiredMark="true"
-    :model="formState"
-    autoComplete="false"
-    @submit.prevent="$emit('handleSubmit')"
-  >
-    <a-form-item
-      v-for="(field, index) in fields"
-      :key="index"
-      :label="field.title"
-      class="mb-10"
-      :validateStatus="message[field.dataIndex] ? 'error' : undefined"
-      :help="message[field.dataIndex] || undefined"
+  <div class="sign-in">
+    <a-form
+      id="form-update"
+      layout="vertical"
+      :hideRequiredMark="true"
+      :model="formState"
+      autoComplete="false"
+      @submit.prevent="$emit('handleSubmit')"
     >
-      <component
-        :type="field.typeData ? field.typeData : undefined"
-        :is="getFieldComponent(field)"
-        :placeholder="field.title"
-        v-model:value="formState[field.dataIndex]"
-        :valueFormat="field.type === 'date' ? 'YYYY-MM-DDTHH:mm:ssZ' : undefined"
-        :format="field.type === 'date' ? 'DD/MM/YYYY' : undefined"
+      <a-form-item
+        v-for="(field, index) in fields"
+        :key="index"
+        :label="field.title"
+        :validateStatus="message[field.dataIndex] ? 'error' : undefined"
+        :help="message[field.dataIndex] || undefined"
       >
-        <a-select-option
-          v-for="(option, index) in field.options"
-          :value="option.value"
-          :key="index"
+        <component
+          :type="field.typeData ? field.typeData : undefined"
+          :is="getFieldComponent(field)"
+          :placeholder="field.title"
+          v-model:value="formState[field.dataIndex]"
+          :valueFormat="field.type === 'date' ? 'YYYY-MM-DDTHH:mm:ssZ' : undefined"
+          :format="field.type === 'date' ? 'DD/MM/YYYY' : undefined"
         >
-          {{ option.title }}</a-select-option
+          <a-select-option
+            v-for="(option, index) in field.options"
+            :value="option.value"
+            :key="index"
+          >
+            {{ option.title }}</a-select-option
+          >
+        </component>
+      </a-form-item>
+      <a-form-item>
+        <a-button
+          type="primary"
+          block
+          html-type="submit"
+          class="login-form-button"
+          :loading="loading"
+          :disabled="!isFormChanged"
         >
-      </component>
-    </a-form-item>
-    <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button
-        type="primary"
-        block
-        html-type="submit"
-        class="login-form-button"
-        :loading="loading"
-        :disabled="!isFormChanged"
-      >
-        Lưu
-      </a-button>
-    </a-form-item>
-  </a-form>
+          Lưu
+        </a-button>
+      </a-form-item>
+    </a-form>
+  </div>
 </template>
 
 <script setup>

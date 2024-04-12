@@ -78,9 +78,7 @@ const handleSubmit = async () => {
   try {
     const authStore = useAuthStore()
     await authStore.login(formState)
-  } catch (error) {
-    console.log(error)
-  }
+  } catch (error) {}
   loading.value = false
 }
 </script>

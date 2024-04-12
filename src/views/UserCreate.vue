@@ -1,19 +1,13 @@
-<!-- <template>
-  <a-card>
-    <template #title>
-      <h5 class="font-semibold m-0">Chỉnh sửa tài khoản</h5>
-    </template>
-
-    <d-form
-      @handleSubmit="handleSubmit"
-      :fields="fields"
-      :labelCol="labelCol"
-      :wrapperCol="wrapperCol"
-      :formState="formState"
-      :message="message"
-      :isFormChanged="isFormChanged"
-    />
-  </a-card>
+<template>
+  <d-form
+    @handleSubmit="handleSubmit"
+    :fields="fields"
+    :labelCol="labelCol"
+    :wrapperCol="wrapperCol"
+    :formState="formState"
+    :message="message"
+    :isFormChanged="isFormChanged"
+  />
 </template>
 
 <script setup>
@@ -106,4 +100,4 @@ const handleSubmit = async () => {
 }
 </script>
 
-<style lang="scss"></style> -->
+<style lang="scss"></style>

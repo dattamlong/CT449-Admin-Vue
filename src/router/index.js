@@ -45,7 +45,10 @@ const router = createRouter({
         {
           path: 'users/:id',
           name: 'Chỉnh sửa tài khoản',
-          component: UserEdit
+          component: UserEdit,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
         },
         {
           path: 'users/create',

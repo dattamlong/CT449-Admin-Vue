@@ -37,7 +37,6 @@ export const uploadImage = (source, file) => {
   const formData = new FormData()
 
   formData.append('file', file)
-  console.log(source)
 
   return api.post(`api/photos/${source}`, formData, {
     headers: {

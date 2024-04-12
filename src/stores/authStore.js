@@ -29,6 +29,11 @@ export const useAuthStore = defineStore({
         router.push('/')
       } catch (error) {
         console.log(error)
+        notification.open({
+          message: 'Đăng nhập thất bại',
+          description: `${error.response.data.message}`,
+          duration: 2
+        })
         return Promise.reject(error)
       }
     },
