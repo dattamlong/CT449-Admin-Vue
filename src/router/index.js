@@ -1,14 +1,16 @@
 import { useAuthStore } from '@/stores/authStore'
-import Books from '@/views/Books.vue'
+import Books from '@/views/BookList.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import Home from '@/views/Home.vue'
 import Profile from '@/views/Profile.vue'
 import SignIn from '@/views/Sign-In.vue'
 import UserCreate from '@/views/UserCreate.vue'
 import UserEdit from '@/views/UserEdit.vue'
-import Users from '@/views/Users.vue'
+import BookCreate from '@/views/BookCreate.vue'
+import Users from '@/views/UserList.vue'
 import { notification } from 'ant-design-vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import BookEdit from '@/views/BookEdit.vue'
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -53,7 +55,10 @@ const router = createRouter({
         {
           path: 'users/create',
           name: 'Thêm tài khoản',
-          component: UserCreate
+          component: UserCreate,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
         },
         {
           path: 'books',
@@ -61,9 +66,28 @@ const router = createRouter({
           component: Books
         },
         {
+          path: 'books/create',
+          name: 'Thêm sách',
+          component: BookCreate,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
+        },
+        {
+          path: 'books/:id',
+          name: 'Chỉnh sửa sách',
+          component: BookEdit,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
+        },
+        {
           path: 'profile',
           name: 'Trang cá nhân',
-          component: Profile
+          component: Profile,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
         }
       ]
     }

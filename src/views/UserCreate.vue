@@ -1,22 +1,26 @@
 <template>
-  <d-form
-    @handleSubmit="handleSubmit"
-    :fields="fields"
-    :labelCol="labelCol"
-    :wrapperCol="wrapperCol"
-    :formState="formState"
-    :message="message"
-    :isFormChanged="isFormChanged"
-  />
+  <div>
+    <user-form
+      :fields="fields"
+      :initState="initState"
+      @handleSubmit="handleSubmit"
+      :message="message"
+    ></user-form>
+  </div>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue'
+import UserForm from '@/components/Form/UserForm.vue'
 import { create } from '@/api/dataController'
+import { useRoute } from 'vue-router'
 import router from '@/router'
-import { ref, watch } from 'vue'
-import DForm from '@/components/Form/ DForm.vue'
+const route = useRoute()
+const id = route.params.id
+const loading = ref(false)
+const initState = ref({})
+const message = ref({})
 
-//Colums
 const fields = [
   {
     title: 'Họ',
@@ -46,17 +50,17 @@ const fields = [
       },
       {
         title: '',
-        value: 'unknow'
+        value: 'unknown'
       }
     ]
   },
   {
-    title: 'Email',
-    dataIndex: 'email'
-  },
-  {
     title: 'Số điện thoại',
     dataIndex: 'phoneNumber'
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email'
   },
   {
     title: 'Mật khẩu',
@@ -64,40 +68,35 @@ const fields = [
     typeData: 'password'
   }
 ]
-const labelCol = { span: 4 }
-const wrapperCol = { span: 14 }
-const loading = ref(false)
-const formState = ref({})
-const message = ref({})
-const isFormChanged = ref(false)
 
-watch(
-  () => JSON.stringify(formState.value),
-  (value) => {
-    isFormChanged.value = value !== ''
-  }
-)
-
-const handleSubmit = async () => {
+const handleSubmit = async (data) => {
   loading.value = true
   try {
-    const { firstName, lastName, email, phoneNumber, gender, birthday, password } = formState.value
+    const { firstName, lastName, phoneNumber, gender, birthday, avatar, email, password } = data
     await create('users', {
       firstName,
       lastName,
-      email,
-      password,
       phoneNumber,
       gender,
-      birthday
+      birthday,
+      avatar,
+      email,
+      password
     })
     router.push('/users')
   } catch (error) {
     message.value = error.response.data
   }
-
   loading.value = false
 }
-</script>
 
-<style lang="scss"></style>
+onMounted(async () => {
+  loading.value = true
+  try {
+    initState.value = await getOne('users', id)
+  } catch (error) {
+    console.error('Lỗi xảy ra khi lấy dữ liệu:', error)
+  }
+  loading.value = false
+})
+</script>

@@ -3,9 +3,12 @@ import api from './axiosConfig'
 
 const apiURL = import.meta.env.VITE_BE_ENDPOINT
 
-export const getList = async (resource) => {
-  const url = `${apiURL}/api/${resource}`
+export const getList = async (resource, search) => {
+  const query = {
+    search
+  }
 
+  const url = `${apiURL}/api/${resource}/?${queryString.stringify(query)}`
   const { data } = await api.get(url)
 
   return data

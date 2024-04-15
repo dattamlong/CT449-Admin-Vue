@@ -16,6 +16,8 @@
         :help="message[field.dataIndex] || undefined"
       >
         <component
+          style="width: 100%"
+          size="large"
           :type="field.typeData ? field.typeData : undefined"
           :is="getFieldComponent(field)"
           :placeholder="field.title"
