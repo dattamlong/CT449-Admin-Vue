@@ -1,20 +1,26 @@
 <template>
   <div>
     <user-form
+      v-if="!loading"
       :fields="fields"
       :initState="initState"
       @handleSubmit="handleSubmit"
+      @handleRemove="handleRemove"
       :message="message"
     />
+    <div v-else>
+      <Spin />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue'
 import UserForm from '@/components/Form/UserForm.vue'
-import { getOne, updateOne } from '@/api/dataController'
+import { deleteOne, getOne, updateOne } from '@/api/dataController'
 import { useRoute } from 'vue-router'
 import router from '@/router'
+import Spin from '@/components/Spin.vue'
 
 //init
 const route = useRoute()
@@ -58,21 +64,38 @@ const fields = [
   {
     title: 'Số điện thoại',
     dataIndex: 'phoneNumber'
+  },
+  {
+    title: 'Địa chỉ',
+    dataIndex: 'address'
   }
 ]
 
 //function
+
+const handleRemove = async () => {
+  loading.value = true
+  try {
+    await deleteOne('users', id)
+    router.push('/users')
+  } catch (error) {
+    console.error(error)
+  }
+  loading.value = false
+}
+
 const handleSubmit = async (data) => {
   loading.value = true
   try {
-    const { firstName, lastName, phoneNumber, gender, birthday, avatar, email } = data
+    const { firstName, lastName, phoneNumber, gender, birthday, avatar, address } = data
     await updateOne('users', id, {
       firstName,
       lastName,
       phoneNumber,
       gender,
       birthday,
-      avatar
+      avatar,
+      address
     })
     router.push('/users')
   } catch (error) {

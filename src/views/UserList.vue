@@ -33,8 +33,8 @@
         :customRow="customRow"
         :loading="loading"
         :columns="columns"
-        :data-source="users"
         :pagination="false"
+        :data-source="users"
         :style="{ cursor: 'pointer' }"
       >
         <template #bodyCell="{ column, record }">
@@ -86,28 +86,27 @@ const columns = [
     title: 'Giới tính',
     dataIndex: 'gender',
     key: 'gender'
+  },
+  {
+    title: 'address',
+    dataIndex: 'address'
   }
 ]
 
 const baseURL = import.meta.env.VITE_BE_ENDPOINT
+
 import { UserOutlined } from '@ant-design/icons-vue'
 import { onMounted, ref } from 'vue'
 import { getList } from '@/api/dataController'
 import { UserAddOutlined } from '@ant-design/icons-vue'
 import router from '@/router'
+import formatDate from '@/utils/formatDate'
 
 //init
 const loading = ref(false)
 const users = ref(null)
 
 //function
-const formatDate = (isoDateString) => {
-  const date = new Date(isoDateString)
-  const day = date.getDate().toString().padStart(2, '0')
-  const month = (date.getMonth() + 1).toString().padStart(2, '0') // Tháng bắt đầu từ 0 (tức là tháng 1 là 0)
-  const year = date.getFullYear()
-  return `${day}/${month}/${year}`
-}
 
 const onSearch = async (text) => {
   loading.value = true

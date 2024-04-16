@@ -2,15 +2,18 @@ import { useAuthStore } from '@/stores/authStore'
 import Books from '@/views/BookList.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import Home from '@/views/Home.vue'
-import Profile from '@/views/Profile.vue'
-import SignIn from '@/views/Sign-In.vue'
+
 import UserCreate from '@/views/UserCreate.vue'
 import UserEdit from '@/views/UserEdit.vue'
+import BorrowList from '@/views/BorrowList.vue'
 import BookCreate from '@/views/BookCreate.vue'
 import Users from '@/views/UserList.vue'
 import { notification } from 'ant-design-vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import BookEdit from '@/views/BookEdit.vue'
+import BorrowCreate from '@/views/BorrowCreate.vue'
+import BorrowEdit from '@/views/BorrowEdit.vue'
+import SignIn from '@/views/Sign-In.vue'
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -74,17 +77,33 @@ const router = createRouter({
           }
         },
         {
-          path: 'books/:id',
-          name: 'Chỉnh sửa sách',
-          component: BookEdit,
+          path: 'borrows',
+          name: 'Theo dõi mượn sách',
+          component: BorrowList,
           meta: {
             layoutClass: 'layout-profile'
           }
         },
         {
-          path: 'profile',
-          name: 'Trang cá nhân',
-          component: Profile,
+          path: 'borrows/create',
+          name: 'Thêm mượn sách',
+          component: BorrowCreate,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
+        },
+        {
+          path: 'borrows/:id',
+          name: 'Chỉnh sửa mượn sách',
+          component: BorrowEdit,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
+        },
+        {
+          path: 'books/:id',
+          name: 'Chỉnh sửa sách',
+          component: BookEdit,
           meta: {
             layoutClass: 'layout-profile'
           }

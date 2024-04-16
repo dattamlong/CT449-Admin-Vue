@@ -1,18 +1,24 @@
 <template>
   <book-form
+    v-if="!loading"
     :fields="fields"
     :initState="initState"
     @handleSubmit="handleSubmit"
+    @handleRemove="handleRemove"
     :message="message"
   />
+  <div v-else>
+    <Spin />
+  </div>
 </template>
 
 <script setup>
 import BookForm from '@/components/Form/BookForm.vue'
 import { onBeforeMount, onMounted, ref } from 'vue'
 import router from '@/router'
-import { getList, getOne, updateOne } from '@/api/dataController'
+import { deleteOne, getList, getOne, updateOne } from '@/api/dataController'
 import { useRoute } from 'vue-router'
+import Spin from '@/components/Spin.vue'
 
 //init
 const route = useRoute()
@@ -32,19 +38,33 @@ const fields = ref([
   },
   {
     title: 'Năm xuất bản',
-    dataIndex: 'publishYear'
+    dataIndex: 'publishYear',
+    typeData: 'number'
   },
   {
-    title: 'giá tiền',
-    dataIndex: 'price'
+    title: 'Giá tiền (Đơn vị: VND)',
+    dataIndex: 'price',
+    typeData: 'number'
   },
   {
-    title: 'số lượng',
+    title: 'Số lượng',
     dataIndex: 'quantity'
   }
 ])
 
 //function
+
+const handleRemove = async () => {
+  loading.value = true
+  try {
+    await deleteOne('books', id)
+    router.push('/books')
+  } catch (error) {
+    console.error(error)
+  }
+  loading.value = false
+}
+
 const handleSubmit = async (data) => {
   loading.value = true
   try {

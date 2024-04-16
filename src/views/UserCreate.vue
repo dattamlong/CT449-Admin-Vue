@@ -1,11 +1,15 @@
 <template>
   <div>
     <user-form
+      v-if="!loading"
       :fields="fields"
       :initState="initState"
       @handleSubmit="handleSubmit"
       :message="message"
-    ></user-form>
+    />
+    <div v-else>
+      <Spin />
+    </div>
   </div>
 </template>
 
@@ -15,6 +19,8 @@ import UserForm from '@/components/Form/UserForm.vue'
 import { create } from '@/api/dataController'
 import { useRoute } from 'vue-router'
 import router from '@/router'
+import Spin from '@/components/Spin.vue'
+
 const route = useRoute()
 const id = route.params.id
 const loading = ref(false)
@@ -59,6 +65,10 @@ const fields = [
     dataIndex: 'phoneNumber'
   },
   {
+    title: 'Địa chỉ',
+    dataIndex: 'address'
+  },
+  {
     title: 'Email',
     dataIndex: 'email'
   },
@@ -72,7 +82,8 @@ const fields = [
 const handleSubmit = async (data) => {
   loading.value = true
   try {
-    const { firstName, lastName, phoneNumber, gender, birthday, avatar, email, password } = data
+    const { firstName, lastName, phoneNumber, gender, birthday, avatar, email, password, address } =
+      data
     await create('users', {
       firstName,
       lastName,
@@ -80,6 +91,7 @@ const handleSubmit = async (data) => {
       gender,
       birthday,
       avatar,
+      address,
       email,
       password
     })
@@ -89,14 +101,4 @@ const handleSubmit = async (data) => {
   }
   loading.value = false
 }
-
-onMounted(async () => {
-  loading.value = true
-  try {
-    initState.value = await getOne('users', id)
-  } catch (error) {
-    console.error('Lỗi xảy ra khi lấy dữ liệu:', error)
-  }
-  loading.value = false
-})
 </script>

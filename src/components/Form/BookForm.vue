@@ -2,9 +2,7 @@
   <div>
     <div
       class="profile-nav-bg"
-      style="
-        background-image: url('https://vietabinhdinh.edu.vn/wp-content/uploads/Anh-4K-%E2%80%93-Hinh-nen-4K-dep-nhat-the-gioi.jpg');
-      "
+      style="background-image: url('../../../public/images/bg-profile.jpg')"
     ></div>
 
     <a-card :bordered="false" class="card-profile-head" :bodyStyle="{ padding: 0 }">
@@ -47,6 +45,12 @@
               accept="image/*"
               :style="{ display: 'none' }"
             />
+
+            <div v-if="initState._id">
+              <a-button @click="showConfirm" danger type="link">
+                <DeleteOutlined /> Xóa quyển sách
+              </a-button>
+            </div>
           </a-flex>
         </a-col>
 
@@ -68,32 +72,26 @@
 
 <script setup>
 //props
-const emit = defineEmits(['handleSubmit'])
+const emit = defineEmits(['handleSubmit', 'handleRemove'])
 const props = defineProps(['fields', 'initState', 'message'])
 //import
-import { UserOutlined } from '@ant-design/icons-vue'
-import { computed, ref, watch } from 'vue'
+import { UserOutlined, ExclamationCircleOutlined } from '@ant-design/icons-vue'
+import { computed, createVNode, ref, watch } from 'vue'
 import { uploadImage } from '@/api/dataController'
 import DForm from '@/components/Form/DForm.vue'
+import { Modal } from 'ant-design-vue'
 
 //init
 const baseURL = import.meta.env.VITE_BE_ENDPOINT
 const labelCol = { span: 4 }
 const wrapperCol = { span: 14 }
 const isFormChanged = ref(false)
-const formState = ref({})
+const formState = ref(JSON.parse(JSON.stringify(props.initState)))
 const inputRef = ref(null)
 const imageUrl = ref('')
 const visible = ref(false)
 
 //watch update
-watch(
-  () => props.initState,
-  (value) => {
-    formState.value = JSON.parse(JSON.stringify(value))
-  }
-)
-
 watch(
   () => JSON.stringify(formState.value),
   (value) => {
@@ -103,6 +101,20 @@ watch(
 
 const setVisible = (value) => {
   visible.value = value
+}
+
+const showConfirm = () => {
+  Modal.confirm({
+    centered: true,
+    title: () => 'Bạn muốn xóa vĩnh viễn quyển sách này??',
+    icon: () => createVNode(ExclamationCircleOutlined),
+    content: () => 'Hãy cân nhắc trước khi xóa vì bạn không thể phục hồi quyển sách này',
+    onOk() {
+      emit('handleRemove')
+    },
+
+    onCancel() {}
+  })
 }
 
 const handleClick = () => {

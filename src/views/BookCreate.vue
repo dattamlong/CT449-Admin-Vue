@@ -1,22 +1,24 @@
 <template>
   <book-form
+    v-if="!loading"
     :fields="fields"
     :initState="initState"
     @handleSubmit="handleSubmit"
     :message="message"
   />
+  <div v-else>
+    <Spin />
+  </div>
 </template>
 
 <script setup>
 import BookForm from '@/components/Form/BookForm.vue'
-import { onBeforeMount, onMounted, ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import router from '@/router'
-import { create, getList, getOne, updateOne } from '@/api/dataController'
-import { useRoute } from 'vue-router'
+import { create, getList } from '@/api/dataController'
+import Spin from '@/components/Spin.vue'
 
 //init
-const route = useRoute()
-const id = route.params.id
 const loading = ref(false)
 const initState = ref({})
 const message = ref({})
@@ -32,14 +34,16 @@ const fields = ref([
   },
   {
     title: 'Năm xuất bản',
-    dataIndex: 'publishYear'
+    dataIndex: 'publishYear',
+    typeData: 'number'
   },
   {
-    title: 'giá tiền',
-    dataIndex: 'price'
+    title: 'Giá tiền (Đơn vị: VND)',
+    dataIndex: 'price',
+    typeData: 'number'
   },
   {
-    title: 'số lượng',
+    title: 'Số lượng',
     dataIndex: 'quantity'
   }
 ])
@@ -70,10 +74,14 @@ onBeforeMount(async () => {
   try {
     const res = await getList('publishers')
     publishers.value = res.data
-    const options = res.data.map((publisher) => ({ title: publisher.name, value: publisher._id }))
+    const publisherOptions = res.data.map((publisher) => ({
+      title: publisher.name,
+      value: publisher._id
+    }))
+
     fields.value = [
       ...fields.value,
-      { title: 'Nhà xuất bản', dataIndex: 'publisher', type: 'option', options }
+      { title: 'Nhà xuất bản', dataIndex: 'publisher', type: 'option', options: publisherOptions }
     ]
   } catch (error) {
     alert('Cannot get publishers. Please try again')

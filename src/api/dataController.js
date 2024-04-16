@@ -36,6 +36,13 @@ export const create = async (resource, newData) => {
   return data
 }
 
+export const deleteOne = async (resource, id) => {
+  const url = `${apiURL}/api/${resource}/${id}`
+  const { data } = await api.delete(url)
+
+  return data
+}
+
 export const uploadImage = (source, file) => {
   const formData = new FormData()
 
