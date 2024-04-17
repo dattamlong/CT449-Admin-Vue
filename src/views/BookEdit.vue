@@ -66,7 +66,6 @@ const handleRemove = async () => {
 }
 
 const handleSubmit = async (data) => {
-  loading.value = true
   try {
     const { title, author, publishYear, price, quantity, image, publisher } = data
 
@@ -83,7 +82,6 @@ const handleSubmit = async (data) => {
   } catch (error) {
     message.value = error.response.data
   }
-  loading.value = false
 }
 
 onBeforeMount(async () => {

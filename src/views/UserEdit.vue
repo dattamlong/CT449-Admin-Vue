@@ -85,7 +85,6 @@ const handleRemove = async () => {
 }
 
 const handleSubmit = async (data) => {
-  loading.value = true
   try {
     const { firstName, lastName, phoneNumber, gender, birthday, avatar, address } = data
     await updateOne('users', id, {
@@ -101,7 +100,6 @@ const handleSubmit = async (data) => {
   } catch (error) {
     message.value = error.response.data
   }
-  loading.value = false
 }
 onMounted(async () => {
   loading.value = true

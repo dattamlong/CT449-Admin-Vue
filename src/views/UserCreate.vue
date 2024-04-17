@@ -80,7 +80,6 @@ const fields = [
 ]
 
 const handleSubmit = async (data) => {
-  loading.value = true
   try {
     const { firstName, lastName, phoneNumber, gender, birthday, avatar, email, password, address } =
       data
@@ -99,6 +98,5 @@ const handleSubmit = async (data) => {
   } catch (error) {
     message.value = error.response.data
   }
-  loading.value = false
 }
 </script>

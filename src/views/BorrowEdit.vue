@@ -54,7 +54,6 @@ const handleRemove = async () => {
 }
 
 const handleSubmit = async (data) => {
-  loading.value = true
   try {
     const { reader, book, borrowingDay, returnDay } = data
     await updateOne('borrows', id, { reader, book, borrowingDay, returnDay })
@@ -62,7 +61,6 @@ const handleSubmit = async (data) => {
   } catch (error) {
     message.value = error.response.data
   }
-  loading.value = false
 }
 
 onBeforeMount(async () => {

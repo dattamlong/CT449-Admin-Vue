@@ -88,7 +88,7 @@ const columns = [
     key: 'gender'
   },
   {
-    title: 'address',
+    title: 'Địa chỉ',
     dataIndex: 'address'
   }
 ]
