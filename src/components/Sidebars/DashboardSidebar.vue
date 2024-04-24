@@ -12,7 +12,7 @@
     theme="light"
     :style="{ backgroundColor: 'transparent' }"
   >
-    <div class="brand"><span>LOGO Quản lý</span> <span></span></div>
+    <div class="brand"><span>ColdBook</span> <span></span></div>
     <hr />
 
     <a-menu theme="light" mode="inline">
@@ -38,6 +38,14 @@
             <SwitcherOutlined />
           </span>
           <span class="label">Mượn sách</span>
+        </router-link>
+      </a-menu-item>
+      <a-menu-item>
+        <router-link to="/publishers">
+          <span class="icon">
+            <SwitcherOutlined />
+          </span>
+          <span class="label">Nhà xuất bản</span>
         </router-link>
       </a-menu-item>
     </a-menu>

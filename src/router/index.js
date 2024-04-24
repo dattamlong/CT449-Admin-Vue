@@ -14,6 +14,9 @@ import BookEdit from '@/views/BookEdit.vue'
 import BorrowCreate from '@/views/BorrowCreate.vue'
 import BorrowEdit from '@/views/BorrowEdit.vue'
 import SignIn from '@/views/Sign-In.vue'
+import PublisherList from '@/views/PublisherList.vue'
+import PublisherEdit from '@/views/PublisherEdit.vue'
+import PublisherCreate from '@/views/PublisherCreate.vue'
 
 const router = createRouter({
   history: createWebHistory('/'),
@@ -56,6 +59,30 @@ const router = createRouter({
           }
         },
         {
+          path: 'books/create',
+          name: 'Thêm sách',
+          component: BookCreate,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
+        },
+        {
+          path: 'publishers/create',
+          name: 'Thêm nhà xuất bản',
+          component: PublisherCreate,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
+        },
+        {
+          path: 'publishers/:id',
+          name: 'Chỉnh sửa nhà xuất bản',
+          component: PublisherEdit,
+          meta: {
+            layoutClass: 'layout-profile'
+          }
+        },
+        {
           path: 'users/create',
           name: 'Thêm tài khoản',
           component: UserCreate,
@@ -69,20 +96,14 @@ const router = createRouter({
           component: Books
         },
         {
-          path: 'books/create',
-          name: 'Thêm sách',
-          component: BookCreate,
-          meta: {
-            layoutClass: 'layout-profile'
-          }
+          path: 'publishers',
+          name: 'Nhà xuất bản',
+          component: PublisherList
         },
         {
           path: 'borrows',
           name: 'Theo dõi mượn sách',
-          component: BorrowList,
-          meta: {
-            layoutClass: 'layout-profile'
-          }
+          component: BorrowList
         },
         {
           path: 'borrows/create',

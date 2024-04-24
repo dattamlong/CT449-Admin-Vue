@@ -6,12 +6,12 @@
           <a-breadcrumb>
             <a-breadcrumb-item><router-link to="/"> Trang</router-link></a-breadcrumb-item>
             <a-breadcrumb-item
-              ><span>{{ this.$route.name }}</span></a-breadcrumb-item
+              ><span>{{ route.name }}</span></a-breadcrumb-item
             >
           </a-breadcrumb>
 
           <div class="ant-page-header-heading">
-            <span class="ant-page-header-heading-title">{{ this.$route.name }}</span>
+            <span class="ant-page-header-heading-title">{{ route.name }}</span>
           </div>
         </a-col>
 
@@ -51,7 +51,10 @@
 </template>
 
 <script setup>
+import router from '@/router'
 import { useAuthStore } from '@/stores/authStore'
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 const props = defineProps(['navbarFixed', 'sidebarCollapsed'])
 

@@ -46,7 +46,7 @@
 const emit = defineEmits(['handleSubmit', 'handleRemove'])
 const props = defineProps(['fields', 'initState', 'message', 'bookImages'])
 //import
-import { UserOutlined, ExclamationCircleOutlined } from '@ant-design/icons-vue'
+import { UserOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons-vue'
 import { createVNode, ref, watch } from 'vue'
 import DForm from '@/components/Form/DForm.vue'
 import { Modal } from 'ant-design-vue'

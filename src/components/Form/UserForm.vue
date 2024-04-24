@@ -27,10 +27,7 @@
             <a-avatar v-else :size="300">
               <template #icon><UserOutlined /></template>
             </a-avatar>
-            <a-button @click="handleClick">
-              <upload-outlined></upload-outlined>
-              Tải ảnh lên
-            </a-button>
+            <a-button @click="handleClick"> Tải ảnh lên </a-button>
 
             <input
               ref="inputRef"

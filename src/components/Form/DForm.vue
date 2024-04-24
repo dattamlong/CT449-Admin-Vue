@@ -40,7 +40,6 @@
           block
           html-type="submit"
           class="login-form-button"
-          :loading="loading"
           :disabled="!isFormChanged"
         >
           Lưu

@@ -1,12 +1,12 @@
 <template>
   <a-layout-header>
     <div class="header-col header-brand">
-      <h6>Admin</h6>
+      <h6>ColdBook</h6>
     </div>
   </a-layout-header>
 </template>
 
-<script>  
+<script>
 export default {
   data() {
     return {

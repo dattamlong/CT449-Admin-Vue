@@ -38,6 +38,21 @@ const fields = ref([
     title: 'Ngày trả',
     dataIndex: 'returnDay',
     type: 'date'
+  },
+  {
+    title: 'Trạng thái',
+    dataIndex: 'isReturned',
+    type: 'option',
+    options: [
+      {
+        title: 'Đã trả',
+        value: true
+      },
+      {
+        title: 'Chưa trả',
+        value: false
+      }
+    ]
   }
 ])
 

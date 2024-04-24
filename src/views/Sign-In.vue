@@ -1,6 +1,6 @@
 <template>
   <div class="sign-in">
-    <Particles />
+    <!-- <Particles /> -->
     <a-row type="flex" :gutter="[24, 24]" justify="space-around" align="middle">
       <a-col
         :span="24"

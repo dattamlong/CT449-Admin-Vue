@@ -30,6 +30,7 @@ export const updateOne = async (resource, id, newData) => {
 }
 
 export const create = async (resource, newData) => {
+  console.log(resource)
   const url = `${apiURL}/api/${resource}`
   const { data } = await api.post(url, newData)
 
